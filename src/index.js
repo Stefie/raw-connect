@@ -17,14 +17,13 @@ const wasmLocal = new WasmProvider(polkadotLocal());
   try {
     // Create our API with a connection to the Wasm light client 
     const api = await ApiPromise.create(wasmLocal);
-    console.log('WE created!');
+    console.log('API created!');
     // Wait until we are ready and connected
     await api.isReady;
 
     // Do something
-    console.log('api.genesisHash.toHex()', api.genesisHash.toHex());
-
     console.log('WASM api', api);
+    console.log('api.genesisHash.toHex()', api.genesisHash.toHex());
 
     // Retrieve the initial data
     let [ , , [data, {free: previous}] ]= await api.query.system.account(ALICE);
@@ -44,7 +43,6 @@ const wasmLocal = new WasmProvider(polkadotLocal());
     });
 
   } catch (e) {
-    console.log('WE haz ERROR!');
     createError(e, wrapper);
   }
 }());
